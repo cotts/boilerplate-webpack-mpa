@@ -1,7 +1,8 @@
-const path = require('path');
-const glob = require("glob");
-const ExtractTextPlugin = require("extract-text-webpack-plugin");
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+const webpack = require('webpack')
+  , path = require('path')
+  , glob = require("glob")
+  , ExtractTextPlugin = require("extract-text-webpack-plugin")
+  , HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const createTemplate = (el) => new HtmlWebpackPlugin({ filename: path.basename(el, '.pug') + '.html', hash: true, template: el });
 
@@ -19,10 +20,7 @@ module.exports = {
     rules: [
       {
         test: /\.scss$/,
-        use: ExtractTextPlugin.extract({
-          fallback: 'style-loader',
-          use: ['css-loader', 'sass-loader']
-        })
+        use: ExtractTextPlugin.extract({ fallback: 'style-loader', use: ['css-loader', 'sass-loader']})
       },
       {
         test: /\.js$/,
@@ -38,14 +36,22 @@ module.exports = {
       }
     ]
   },
+  devServer: {
+    contentBase: path.join(__dirname, 'dist'),
+    compress: true,
+    hotOnly: true,
+    clientLogLevel: 'none',
+  },
   plugins: [
     new ExtractTextPlugin({
       filename: 'assets/css/app.css',
       disable: false,
       allChunks: true,
       publicPath: 'assets/css'
-    })
-  ].concat(listTemplates())
+    }),
+    new webpack.HotModuleReplacementPlugin({})
+  ]
+    .concat(listTemplates())
 
 }
 
