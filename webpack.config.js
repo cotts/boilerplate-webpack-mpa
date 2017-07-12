@@ -25,6 +25,13 @@ module.exports = {
                     publicPath: './dist/assets/css'
                 })
             },
+             {
+        test: /\.js$/,
+        use: [{
+          loader: "babel-loader",
+          options: { presets: ["es2015"] }
+        }],
+      },
           {
         test: /\.pug$/,
            loader: ['html-loader', 'pug-html-loader?pretty=true']

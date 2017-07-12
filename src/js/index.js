@@ -1,1 +1,1 @@
-let styles = require('../sass/style.scss');
+import styles from '../sass/style.scss';
