@@ -3,13 +3,9 @@ const glob = require("glob");
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
-let files = ()=>{
-    'use strict';
-    var context = [];
-    glob.sync("./src/views/*.pug").forEach((el) => context.push(new HtmlWebpackPlugin({ filename: path.basename(el, '.pug')+'.html', hash: true, template: el })));
+let files = ()=> glob.sync("./src/views/*.pug").map((el) =>  new HtmlWebpackPlugin({ filename: path.basename(el, '.pug')+'.html', hash: true, template: el }));
     
-    return context;
-}
+
 
 module.exports = {
     entry: {
