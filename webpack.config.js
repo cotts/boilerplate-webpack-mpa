@@ -3,9 +3,9 @@ const glob = require("glob");
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
-let files = ()=> glob.sync("./src/views/*.pug").map((el) =>  new HtmlWebpackPlugin({ filename: path.basename(el, '.pug')+'.html', hash: true, template: el }));
-    
+const createTemplate = (el)=> new HtmlWebpackPlugin({ filename: path.basename(el, '.pug')+'.html', hash: true, template: el });
 
+const listTemplates = ()=> glob.sync("./src/views/*.pug").map(createTemplate);
 
 module.exports = {
     entry: {
@@ -35,7 +35,7 @@ module.exports = {
         filename: 'assets/css/app.css',
         disable: false,
         allChunks: true
-    })].concat(files())
+    })].concat(listTemplates())
 
 }
 
