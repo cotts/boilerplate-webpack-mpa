@@ -1,0 +1,1 @@
+let styles = require('../sass/style.scss');
