@@ -21,28 +21,31 @@ module.exports = {
         test: /\.scss$/,
         use: ExtractTextPlugin.extract({
           fallback: 'style-loader',
-          loader: ['css-loader', 'sass-loader']
+          use: ['css-loader', 'sass-loader']
         })
       },
       {
         test: /\.js$/,
-        use: [{loader: "babel-loader", options: { presets: ["es2015"] }}],
+        use: [{ loader: "babel-loader", options: { presets: ["es2015"] } }],
       },
       {
         test: /\.pug$/,
-        loader: ['html-loader', 'pug-html-loader?pretty=true']
+        use: ['html-loader', 'pug-html-loader?pretty=true'],
       },
-      { 
+      {
         test: /\.(gif|png|jpe?g|svg)$/i,
-       loaders: ['file-loader?hash=sha512&digest=hex&name=assets/img/[hash].[ext]','image-webpack-loader']
+        loaders: ['file-loader?hash=sha512&digest=hex&name=assets/img/[hash].[ext]', 'image-webpack-loader']
       }
     ]
   },
-  plugins: [new ExtractTextPlugin({
-    filename: 'assets/css/app.css',
-    disable: false,
-    allChunks: true
-  })].concat(listTemplates())
+  plugins: [
+    new ExtractTextPlugin({
+      filename: 'assets/css/app.css',
+      disable: false,
+      allChunks: true,
+      publicPath: 'assets/css'
+    })
+  ].concat(listTemplates())
 
 }
 

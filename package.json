@@ -4,8 +4,9 @@
   "description": "Boilerplate with Webpack for MPA pages",
   "main": "webpack.config.js",
   "scripts": {
+    "clean": "rimraf ./dist/*",
     "prod": "webpack -p",
-    "clean": "rimraf ./dist/*"
+    "dev" : "webpack-dev-server"
   },
   "author": "Thadeu Cotts <thadeu@cotts.tech> (https://cotts.tech)",
   "license": "MIT",
@@ -25,7 +26,8 @@
     "rimraf": "^2.6.1",
     "sass-loader": "^6.0.6",
     "style-loader": "^0.18.2",
-    "webpack": "^3.1.0"
+    "webpack": "^3.1.0",
+    "webpack-dev-server": "^2.5.1"
   },
   "repository": {
     "type": "git",
