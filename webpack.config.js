@@ -20,7 +20,7 @@ module.exports = {
     rules: [
       {
         test: /\.scss$/,
-        use: ExtractTextPlugin.extract({ fallback: 'style-loader', use: ['css-loader', 'sass-loader']})
+        use: ExtractTextPlugin.extract({ fallback: 'style-loader', use: ['css-loader', 'sass-loader'] })
       },
       {
         test: /\.js$/,
@@ -38,8 +38,8 @@ module.exports = {
   },
   devServer: {
     contentBase: path.join(__dirname, 'dist'),
+    publicPath: '/',
     compress: true,
-    hotOnly: true,
     clientLogLevel: 'none',
   },
   plugins: [
@@ -48,8 +48,7 @@ module.exports = {
       disable: false,
       allChunks: true,
       publicPath: 'assets/css'
-    }),
-    new webpack.HotModuleReplacementPlugin({})
+    })
   ]
     .concat(listTemplates())
 
